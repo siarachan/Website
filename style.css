@@ -1,0 +1,445 @@
+/* --- 1. Reset & Global Layout --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Prevents padding from breaking widths */
+}
+
+:root {
+    --bg-color: #F2F1EE;
+    --accent-brown: #BC6C3C;
+    --text-dark: #333;
+}
+
+body {
+    background-color: var(--bg-color);
+    font-family: 'Arial', sans-serif;
+    color: var(--text-dark);
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navigation */
+.navbar {
+    display: flex;
+    justify-content: center;
+    padding: 40px 0;
+    position: relative;
+}
+
+.logo {
+    position: absolute; 
+    left: 40px;         
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+    align-items: center; 
+}
+
+.nav-links li {
+    display: block;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--accent-brown);
+    font-weight: 600;
+    display: inline-block;
+    line-height: 1.2; 
+    text-align: center;
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-block; /* Required for transform/lift to work */
+}
+
+.nav-links a:hover {
+    color: var(--text-dark); /* Shifts from brown to dark grey */
+    transform: translateY(-2px); /* Subtle "lift" effect */
+}
+
+.nav-links a.btn-contact {
+    background: #000;
+    color: #fff !important; /* Forces the text to stay white */
+    padding: 10px 25px;
+    border: none;
+    font-family: 'Georgia', serif;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Ensure it stays white even when you hover over the button */
+.nav-links a.btn-contact:hover {
+    color: #fff !important;
+    background-color: var(--accent-brown); /* Changes to brown background on hover */
+}
+
+.btn-contact {
+   background: #000;
+    color: #fff;
+    padding: 10px 25px;
+    border: none;
+    font-family: 'Georgia', serif;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* --- 3. Main Page Specifics (Hero & Gallery) --- */
+.hero-content {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 40px;
+    align-items: start;
+    margin-top: 30px;
+}
+
+
+.hero-sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.hero-sidebar p {
+    margin-bottom: 30px; 
+    line-height: 1.5;    
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.hero-image-placeholder {
+    background: #D9D9D9;
+    aspect-ratio: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;  /* no border around the images*/
+}
+
+.hero-sidebar .hero-image-placeholder {
+    aspect-ratio: auto; 
+    background: none;
+    margin-bottom: 30px;
+    border-radius: 30%;
+}
+
+.hero-sidebar img {
+    width: 100%;
+    height: auto;
+    object-fit: contain; 
+    mix-blend-mode: multiply;
+    border-radius: 30%;
+}
+
+.sketchbook-page .hero-grid {
+    grid-template-columns: 2fr 2fr 2fr; 
+}
+
+.sketchbook-page .hero-image-placeholder img {
+    max-height: 300px; 
+    width: auto;
+}
+
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover; 
+}
+
+.logo-img {
+    width: 50px; 
+    height: auto;
+}
+
+.logo a {
+    text-decoration: none;
+    display: inline-block;
+    transition: opacity 0.3s ease;
+}
+
+.logo a:hover {
+    opacity: 0.8;
+}
+
+.hero-image-placeholder, .gallery-item {
+    overflow: hidden; /* Clips any image overlap */
+    background: none; /* Removes the grey placeholder color */
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+}
+
+.gallery-item {
+    background: none;
+    border: none;
+    aspect-ratio: 1.414 / 1;
+    overflow: hidden; /* This clips the image so it zooms INSIDE the box */
+    cursor: pointer;
+    display: block; /* Ensures the container behaves as a hit-box for the mouse */
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.4s ease-in-out; 
+}
+
+.gallery-item, .hero-image-placeholder {
+    overflow: hidden; 
+    cursor: pointer; /* This is the "hover indicator" - the mouse turns into a hand */
+    background: none;
+}
+
+.gallery-item img, .hero-image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease-in-out; /* Smoothly animates the hover zoom */
+}
+
+.page-title {
+    font-size: 2.5rem;       /* Makes the size consistent */
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-top: 40px;        
+    margin-bottom: 30px;     
+    text-align: center;        
+    width: 100%;
+}
+
+/* The Hover Animation */
+.gallery-item:hover img, 
+.hero-image-placeholder:hover img {
+    transform: scale(1.10); /* Slight zoom to indicate it is interactive */
+}
+
+.site-footer {
+    padding: 40px 0; /* Vertical space inside the footer */
+    margin-top: 60px; /* Space between your content and the footer */
+    text-align: center;
+    border-top: 1px solid #ddd; /* Optional: a thin line to separate it */
+    color: var(--accent-brown);
+    font-size: 0.9rem;
+}
+
+/* Contact Page Specifics */
+.contact-form-section {
+    display: flex;
+    justify-content: center;
+    padding: 60px 0;
+}
+
+#contact-form {
+    width: 100%;
+    max-width: 800px; /* Limits width to match Desktop */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-row input { flex: 1; }
+
+input, textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #333; /* Keeps the dark border from your current style */
+    
+    /* Change the background color here */
+    background-color: #8B4513; /* A rich, darker brown */
+    
+    /* Ensure the text inside is readable */
+    color: #ffffff; 
+}
+
+/* Optional: Change the color of the placeholder text (the "Name", "Email" hints) */
+input::placeholder, textarea::placeholder {
+    color: #ddd;
+    opacity: 0.8;
+}
+
+/* Optional: Add a focus effect so it lights up when clicked */
+input:focus, textarea:focus {
+    outline: none;
+    background-color: var(--accent-brown); /* Switches to your nav brown when typing */
+    border-color: #000;
+}
+
+.form-submit {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.sketchbook-layout .hero-content {
+    grid-template-columns: 3.5fr 1fr;
+}
+
+.sketchbook-layout .hero-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+}
+
+.sketchbook-layout .hero-image-placeholder {
+    aspect-ratio: 1 / 1;
+}
+
+.sketchbook-layout .hero-image-placeholder img {
+    object-fit: cover; /* Squares look better as 'cover' in a 3-column grid */
+}
+
+/* --- About Page Specifics --- */
+.about-section {
+    padding: 60px 0;
+}
+
+.about-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    color: var(--text-dark);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* Match the wireframe ratio */
+    gap: 60px;
+    align-items: start;
+}
+
+.about-profile {
+    text-align: center;
+}
+
+.profile-image-container {
+    background: #D9D9D9; /* Placeholder grey from wireframe */
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.profile-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-name {
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    font-size: 1.8rem;
+    color: var(--text-dark);
+}
+
+.about-text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 25px;
+    color: #555;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 40px;
+}
+
+.social-links .btn-dark {
+    text-decoration: none;
+    text-align: center;
+    min-width: 120px;
+}
+
+/* Responsive for Mobile */
+@media (max-width: 768px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .about-title {
+        font-size: 2rem;
+    }
+}
+
+/* --- 5. Shared UI Components --- */
+.btn-dark {
+    background: #000;
+    color: #fff;
+    padding: 10px 25px;
+    border: none;
+    font-family: 'Georgia', serif;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn-dark:hover {
+    background-color: var(--accent-brown); /* Changes background to the nav brown */
+    color: #ffffff; /* Keeps the text white for better contrast */
+    transform: translateY(-2px); /* Keeps the subtle lift effect we added earlier */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Enhances the shadow on hover */
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Needed for the Scroll Animation */
+.reveal {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+#lightbox {
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: zoom-out;
+}
+
+#lightbox img {
+    max-width: 90%;
+    max-height: 80%;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+}
+@media (max-width: 768px) {
+    .hero-content, .gallery-grid, .form-row {
+        grid-template-columns: 1fr;
+        flex-direction: column;
+    }
+}
